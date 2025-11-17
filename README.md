@@ -31,4 +31,4 @@ using the following commands.
 
     $ ./run.sh
 
-To use the chat example, open http://127.0.0.1:8001 or http://localhost:8001 in your browser.
+To use the chat example, open http://127.0.0.1:8000 or http://localhost:8000 in your browser.
