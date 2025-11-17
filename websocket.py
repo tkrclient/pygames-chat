@@ -95,9 +95,12 @@ def websocket():
                     print(f"Received: {receiveJson}")
 
                     # Validate message length
-                    if len(receiveJson.get("message", "")) > 500:
+                    if len(receiveJson.get("text", "")) > 500:
                         print("Message too long")
                         return  # Ignore oversized messages
+                    elif len(receiveJson.get("username", "")) > 500:
+                        print("Name too long")
+                        return # Ignore oversized username
                         
                     # Create response
                     sendJson = receiveJson
