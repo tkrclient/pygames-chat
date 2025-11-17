@@ -44,3 +44,4 @@ To use the chat example, open http://127.0.0.1:8000 or http://localhost:8000 in 
     $ docker compose up -d
 
 - features a tiny ~13mb docker from scratch container 😎, for only the minimum needed (python3, picows, pygames-chat all compiled into a single static executable binary)
+- tiny for extreme security, and easy codebase maintainability 😎
