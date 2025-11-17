@@ -34,3 +34,11 @@ using the following commands.
     $ ./run.sh
 
 To use the chat example, open http://127.0.0.1:8000 or http://localhost:8000 in your browser.
+
+## Running the docker container (haven't tested Dockerfile yet (inspired by [this](https://github.com/CrafterKolyan/tiny-python-docker-image/blob/main/Dockerfile.scratch-minimal)))
+
+    $ git clone https://github.com/tkrclient/pygames-chat
+    $ cd pygames-chat
+    $ docker compose up -d
+
+- features a tiny ~50mb docker container for only the minimum needed (python3, picows, pygames-chat)
