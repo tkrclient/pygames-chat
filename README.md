@@ -40,8 +40,8 @@ To use the chat example, open http://127.0.0.1:8000 or http://localhost:8000 in 
     $ mkdir docker-chat
     $ cd docker-chat
     $ git clone https://github.com/tkrclient/pygames-chat
-    $ mv pygames-chat/docker-compose.yml pygames-chat/Dockerfile ./
-    $ docker compose up -d
+    $ mv pygames-chat/docker/docker-compose.yml pygames-chat/docker/Dockerfile pygames-chat/docker/run.sh ./
+    $ ./run.sh
 
 - features a tiny ~13mb docker from scratch container 😎, for only the minimum needed (python3, picows, pygames-chat all compiled into a single static executable binary)
 - tiny for extreme security, and easy codebase maintainability 😎
