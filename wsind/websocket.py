@@ -5,6 +5,7 @@ from picows import ws_create_server, WSMsgType, WSTransport, WSListener, WSUpgra
 # Global or module-level
 ip_message_log = defaultdict(list)
 blocked_ips = {}  # ← Dictionary, not set
+connected_clients = set()
 
 def is_spam(ip: str) -> bool:
     now = time.time()
@@ -24,6 +25,7 @@ class Handler(WSListener):
 
     def on_ws_connected(self, transport: WSTransport):
         print("Client connected")
+        connected_clients.add(transport)
 
         # Ensure directory exists
         os.makedirs(os.path.dirname(self.log_file), exist_ok=True)
@@ -40,6 +42,10 @@ class Handler(WSListener):
             transport.send(WSMsgType.TEXT, json.dumps(logs, separators=(',', ':')).encode('utf-8'))
         except (FileNotFoundError, json.JSONDecodeError):
             transport.send(WSMsgType.TEXT, b"[]")
+
+    def on_ws_disconnected(self, transport: WSTransport):
+        connected_clients.discard(transport) # Safely remove the transport
+        print("Client disconnected")
 
     def on_ws_frame(self, transport: WSTransport, frame: WSMsgType):
         client_ip = getattr(self, 'client_ip', None)  # Get client IP stored in handler
@@ -69,8 +75,13 @@ class Handler(WSListener):
                 # Create response
                 sendJson = receiveJson
 
+                # BROADCAST to ALL connected clients
+                message_to_send = json.dumps(sendJson).encode('utf-8')
+                for client_transport in connected_clients: # Loop through all clients
+                    client_transport.send(WSMsgType.TEXT, message_to_send) # Send to each
+
                 # Send JSON response
-                transport.send(WSMsgType.TEXT, json.dumps(sendJson).encode('utf-8'))
+                #transport.send(WSMsgType.TEXT, json.dumps(sendJson).encode('utf-8'))
 
                 # Write to file
                 with open(self.log_file, "r+") as file:
@@ -101,17 +112,3 @@ async def main():
     await server.serve_forever()
 
 asyncio.run(main())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
