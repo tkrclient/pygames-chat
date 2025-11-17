@@ -35,7 +35,7 @@ using the following commands.
 
 To use the chat example, open http://127.0.0.1:8000 or http://localhost:8000 in your browser.
 
-## Running the docker container (haven't tested Dockerfile (inspired by [this](https://github.com/CrafterKolyan/tiny-python-docker-image/blob/main/Dockerfile.scratch-minimal)))
+## Running the docker container 
 
     $ mkdir docker
     $ cd docker
