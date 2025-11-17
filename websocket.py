@@ -26,8 +26,21 @@ def websocket():
         def __init__(self, room):
             self.room = room.lstrip("/")
             self.log_file = f"data/logs-{self.room}.json"
+            #self.client_ip = None
 
         def on_ws_connected(self, transport: WSTransport):
+            try:
+                # Access the underlying asyncio transport
+                underlying = transport.underlying_transport
+                peername = underlying.get_extra_info("peername")
+                if peername:
+                    self.client_ip = peername[0]
+                    print(f"Client IP: {self.client_ip}")
+                else:
+                    self.client_ip = "0.0.0.0"
+            except Exception as e:
+                print(f"Failed to get client IP: {e}")
+
             print(f"Client connected to {self.room}")
             # Get or create the set for this specific room
             if self.room not in Handler.room_clients:
@@ -106,14 +119,8 @@ def websocket():
 
     async def main():
         def listener_factory(request: WSUpgradeRequest):
-            try:
-                client_ip = request.transport.peer_addr[0] if request.transport.peer_addr else "0.0.0.0"
-            except (AttributeError, IndexError):
-                client_ip = "0.0.0.0"
-
             if request.path in [b"/chatroom1", b"/chatroom2"]:
                 handler = Handler(room=request.path.decode('utf-8'))
-                handler.client_ip = client_ip  # Attach IP to handler
                 return handler
             return None
 
