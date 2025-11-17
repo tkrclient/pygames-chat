@@ -95,7 +95,6 @@ def websocket():
                 handler = Handler(room=request.path.decode('utf-8'))
                 handler.client_ip = client_ip  # Attach IP to handler
                 return handler
-                #return Handler(room=request.path.decode('utf-8'))
             return None
 
         server = await ws_create_server(listener_factory, "0.0.0.0", 8001)
