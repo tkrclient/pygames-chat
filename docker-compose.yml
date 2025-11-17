@@ -1,0 +1,10 @@
+services:
+  chat:
+    build: .
+    hostname: chat
+    container_name: chat
+    command: /bin/sh -c "python3 /pygames-chat/wsind/websocket.py"
+    ports:
+      - "0.0.0.0:8001:8001"
+    volumes:
+      - ./pygames-chat:/pygames-chat
