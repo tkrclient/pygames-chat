@@ -20,13 +20,19 @@ def is_spam(ip: str) -> bool:
 
 def websocket():
     class Handler(WSListener):
+        # Define room_clients as a class variable
+        room_clients = {}
+
         def __init__(self, room):
             self.room = room.lstrip("/")
             self.log_file = f"data/logs-{self.room}.json"
 
         def on_ws_connected(self, transport: WSTransport):
-            print("Client connected")
-            connected_clients.add(transport)
+            print(f"Client connected to {self.room}")
+            # Get or create the set for this specific room
+            if self.room not in Handler.room_clients:
+                Handler.room_clients[self.room] = set()
+            Handler.room_clients[self.room].add(transport)
 
             # Ensure directory exists
             os.makedirs(os.path.dirname(self.log_file), exist_ok=True)
@@ -45,8 +51,10 @@ def websocket():
                 transport.send(WSMsgType.TEXT, b"[]")
 
         def on_ws_disconnected(self, transport: WSTransport):
-            connected_clients.discard(transport) # Safely remove the transport
-            print("Client disconnected")
+            print(f"Client disconnected from {self.room}")
+            # Remove the transport from its specific room
+            if self.room in Handler.room_clients:
+                Handler.room_clients[self.room].discard(transport)
 
         def on_ws_frame(self, transport: WSTransport, frame: WSMsgType):
             client_ip = getattr(self, 'client_ip', None)  # Get client IP stored in handler
@@ -76,10 +84,11 @@ def websocket():
                     # Create response
                     sendJson = receiveJson
 
-                    # BROADCAST to ALL connected clients
+                    # BROADCAST only to clients in the SAME room
                     message_to_send = json.dumps(sendJson).encode('utf-8')
-                    for client_transport in connected_clients: # Loop through all clients
-                        client_transport.send(WSMsgType.TEXT, message_to_send) # Send to each
+                    if self.room in Handler.room_clients:
+                        for client_transport in Handler.room_clients[self.room]:
+                            client_transport.send(WSMsgType.TEXT, message_to_send)
 
                     # Send JSON response
                     #transport.send(WSMsgType.TEXT, json.dumps(sendJson).encode('utf-8'))
@@ -113,8 +122,3 @@ def websocket():
         await server.serve_forever()
 
     asyncio.run(main())
-
-
-
-
-
