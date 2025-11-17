@@ -9,13 +9,10 @@ def websocket():
             # Give new client the last amount of allotted messages
             try:
                 with open("data/logs.json", "r") as file:
-                    #logs = file.read()
                     logs = [json.loads(line) for line in file if line.strip()]
-                #transport.send(WSMsgType.TEXT, logs.encode('utf-8'))
                 transport.send(WSMsgType.TEXT, json.dumps(logs, separators=(',', ':')).encode('utf-8'))
             except FileNotFoundError:
                 # Send empty response if file doesn't exist (apparently client expects message even if nothing?)
-                # transport.send(WSMsgType.TEXT, b"[]")
                 print("Log file not found.")
 
         def on_ws_frame(self, transport: WSTransport, frame: WSMsgType):
