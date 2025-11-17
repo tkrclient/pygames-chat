@@ -37,8 +37,10 @@ To use the chat example, open http://127.0.0.1:8000 or http://localhost:8000 in 
 
 ## Running the docker container (haven't tested Dockerfile (inspired by [this](https://github.com/CrafterKolyan/tiny-python-docker-image/blob/main/Dockerfile.scratch-minimal)))
 
+    $ mkdir docker
+    $ cd docker
     $ git clone https://github.com/tkrclient/pygames-chat
-    $ cd pygames-chat
+    $ mv pygames-chat/docker-compose.yml pygames-chat/Dockerfile ./
     $ docker compose up -d
 
 - features a tiny ~50mb docker from scratch container for only the minimum needed (python3, picows, pygames-chat)
