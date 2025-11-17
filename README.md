@@ -20,19 +20,15 @@
 ## Chat Example
 
 This application shows how to use the
-[websocket](https://github.com/gorilla/websocket) package to implement a simple
+picows (python3 websocket) package to implement a simple
 web chat application.
 
 ## Running the example
 
-The example requires a working Go development environment. The [Getting
-Started](http://golang.org/doc/install) page describes how to install the
-development environment.
-
-Once you have Go up and running, you can download, build and run the example
+The example requires a working Python3 development environment.
+Once you have Python3 up and running, you can download, build and run the example
 using the following commands.
 
-    $ go install
-    $ go run *.go
+    $ ./run.sh
 
-To use the chat example, open http://localhost:8080/home.html in your browser.
+To use the chat example, open http://127.0.0.1:8001 or http://localhost:8001 in your browser.
