@@ -3,9 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	var nme = document.getElementById("nme"); // Username input field
 	var log = document.getElementById("log"); // Log container for messages
 	var pick = document.getElementById("colorpicker"); // Username's Colorpicker
-	var dom = "127.0.0.1:8001";
-//	var ws = new WebSocket("ws://" + document.location.host + "/ws");	// Establish a WebSocket connection to the server
-	var ws = new WebSocket("ws://" + dom + "/ws");	// Establish a WebSocket connection to the server
+	var ws = new WebSocket("ws://" + "127.0.0.1:8001" + "/chatroom1");	// Establish a WebSocket connection to the server
 	var message = document.getElementById("message");
 
 	// A map to store usernames and their assigned colors
@@ -127,6 +125,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Check if the browser supports WebSocket
 	if (window["WebSocket"]) {
 		function establishConnection() {
+			var ws = new WebSocket("ws://" + "127.0.0.1:8001" + "/chatroom1");	// Establish a WebSocket connection to the server
+			
 			// Event handler when open
 			ws.onopen = function(evt) {
 				console.log("%c Connection established to chat", "color: lightgreen");
