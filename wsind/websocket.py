@@ -81,7 +81,7 @@ class Handler(WSListener):
                     file.writelines(lines)
                     file.truncate()
             except json.JSONDecodeError:
-                transport.disconnect()
+                print("JSONDecodeError")
 
 async def main():
     def listener_factory(request: WSUpgradeRequest):
