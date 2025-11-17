@@ -118,7 +118,7 @@ def websocket():
             return None
 
         server = await ws_create_server(listener_factory, "0.0.0.0", 8001)
-        print("Server started on ws://localhost:8001")
+        print("Server started on ws://0.0.0.0:8001")
         await server.serve_forever()
 
     asyncio.run(main())
