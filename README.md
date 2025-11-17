@@ -11,11 +11,13 @@
 - Messages always start from the bottom, and every page reload always starts at the bottom of page
 - Very fast
 - Broadcasts the last 30 or so messages (remembers old messages, even when page reloads)
-- Extremely small codebase (less than 100(!!!) loc (not including picows library))
+- Extremely small codebase (less than 200(!!!) loc (not including picows library))
 - Exposed websocket protocol, so you can directly connect to the chat with a custom web client
 - Based on python (cython) backend
 - Is open source so you can customize it to your liking
 - When connection is lost, it will reconnect every two seconds
+- Multiple chatrooms support
+- Spam detection and blocking support
 
 ## Chat Example
 
