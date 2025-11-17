@@ -20,7 +20,7 @@
 ## Chat Example
 
 This application shows how to use the
-picows (python3 websocket) package to implement a simple
+[picows](https://github.com/tarasko/picows) (python3 websocket) package to implement a simple
 web chat application.
 
 ## Running the example
