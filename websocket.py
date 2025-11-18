@@ -4,7 +4,7 @@ from picows import ws_create_server, WSMsgType, WSTransport, WSListener, WSUpgra
 
 # Global or module-level
 ip_message_log = defaultdict(list)
-blocked_ips = {}  #  ^f^p Dictionary, not set
+blocked_ips = {}  #  Dictionary, not set
 connected_clients = set()
 
 def is_spam(ip: str) -> bool:
@@ -107,9 +107,6 @@ def websocket():
                     if self.room in Handler.room_clients:
                         for client_transport in Handler.room_clients[self.room]:
                             client_transport.send(WSMsgType.TEXT, message_to_send)
-
-                    # Send JSON response
-                    #transport.send(WSMsgType.TEXT, json.dumps(sendJson).encode('utf-8'))
 
                     # Write to file
                     with open(self.log_file, "r+") as file:
