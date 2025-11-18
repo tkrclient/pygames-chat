@@ -9,13 +9,13 @@ connected_clients = set()
 
 def is_spam(ip: str) -> bool:
     now = time.time()
-    # Spam: more than 5 messages in 10-second window
+    # Spam: more than 3 messages in 3-second window
     window = 3  # spam time window
-    # Keep only timestamps from the last 10 seconds for this IP
+    # Keep only timestamps from the last 3 seconds for this IP
     ip_message_log[ip] = [t for t in ip_message_log[ip] if now - t < window]
     # Add the current timestamp to the IP's message log
     ip_message_log[ip].append(now)
-    # Return True if the IP sent more than 5 messages in 10 seconds
+    # Return True if the IP sent more than 3 messages in 3 seconds
     return len(ip_message_log[ip]) > 3
 
 def websocket():
