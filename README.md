@@ -32,7 +32,7 @@ The example requires a working Python3 development environment.
 Once you have Python3 up and running, you can download, build and run the example
 using the following commands.
 
-    $ ./run.sh
+    $ chmod +x ./run.sh && ./run.sh
 
 To use the chat example, open http://127.0.0.1:8000 or http://localhost:8000 in your browser.
 
@@ -44,7 +44,7 @@ To use the chat example, open http://127.0.0.1:8000 or http://localhost:8000 in 
     $ mv pygames-chat/docker/docker-compose.yml \
     pygames-chat/docker/Dockerfile \
     pygames-chat/docker/run.sh ./
-    $ ./run.sh
+    $ chmod +x ./run.sh && ./run.sh
 
 - features a tiny ~13mb docker from scratch container 😎, for only the minimum needed (python3, picows, pygames-chat all compiled into a single static executable binary)
 - tiny for extreme security, and easy codebase maintainability 😎
