@@ -47,4 +47,4 @@ To use the chat example, open http://127.0.0.1:8000 or http://localhost:8000 in 
 
 - features a tiny ~13mb docker from scratch container 😎, for only the minimum needed (python3, picows, pygames-chat all compiled into a single static executable binary)
 - tiny for extreme security, and easy codebase maintainability 😎
-- whole container is read-only except for data, which is a mounted volume
+- whole container is read-only except for data and tmp, which is a mounted volume and anonymous volume
