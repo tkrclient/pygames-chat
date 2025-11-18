@@ -7,3 +7,4 @@ services:
     volumes:
       # Directory below will hold the chat logs to remember
       - ./data:/data
+      - /tmp # Anonymous volume for execution
