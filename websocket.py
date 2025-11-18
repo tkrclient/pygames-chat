@@ -10,7 +10,7 @@ connected_clients = set()
 def is_spam(ip: str) -> bool:
     now = time.time()
     # Spam: more than 5 messages in 10-second window
-    window = 3  #  ^f^p spam time window
+    window = 3  # spam time window
     # Keep only timestamps from the last 10 seconds for this IP
     ip_message_log[ip] = [t for t in ip_message_log[ip] if now - t < window]
     # Add the current timestamp to the IP's message log
