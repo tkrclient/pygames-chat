@@ -18,7 +18,7 @@
 - When connection is lost, it will reconnect every two seconds
 - Multiple chatrooms support
 - Spam detection and blocking support
-- Should work with reverse proxy, or direct ip
+- Should work with reverse proxy, or direct
 
 ## Chat Example
 
