@@ -4,7 +4,7 @@ from picows import ws_create_server, WSMsgType, WSTransport, WSListener, WSUpgra
 
 # Global or module-level
 ip_message_log = defaultdict(list)
-blocked_ips = {}  # Dictionary, not set
+blocked_ips = {}  #  Dictionary, not set
 connected_clients = set()
 
 def is_spam(ip: str) -> bool:
@@ -124,7 +124,16 @@ async def main():
         if x_forwarded_for:
             client_ip = x_forwarded_for.split(',')[0].strip()
 
-        if request.path in [b"/chatroom1", b"/chatroom2"]:
+        # Read chatroom names from file
+        try:
+            with open('data/chatrooms.txt', 'r') as f:
+                chatroom_names = f.read().strip().split()
+            # Convert to list of byte strings
+            chatroom_paths = [b"/" + name.encode('utf-8') for name in chatroom_names]
+        except FileNotFoundError:
+            chatroom_paths = []
+
+        if request.path in chatroom_paths:
             handler = Handler(room=request.path.decode('utf-8'))
             if x_forwarded_for:
                 handler.client_ip = client_ip
