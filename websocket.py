@@ -101,7 +101,7 @@ def websocket():
                     elif len(receiveJson.get("username", "")) > 500:
                         print("Name too long")
                         return # Ignore oversized username
-                        
+
                     # Create response
                     sendJson = receiveJson
 
