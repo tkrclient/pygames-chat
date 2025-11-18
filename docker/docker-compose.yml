@@ -7,15 +7,5 @@ services:
     volumes:
       - ./data:/data # Will hold the chat logs to remember
       - /tmp # Anonymous volume for execution
- 
-    # Below not tested yet, security features to turn on #
-
-    #networks:
-    # - proxy-net
-    #cap_drop:
-    #  - ALL
-
-#networks:
-#  proxy-net:
-#    driver: bridge
-#    internal: true  # Blocks external internet access
+    cap_drop:
+      - ALL
