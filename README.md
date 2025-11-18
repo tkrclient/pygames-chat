@@ -20,7 +20,7 @@
 - Spam detection and blocking support
 - Should work with reverse proxy, or direct
 
-  To Do:
+To Do:
 - Will make chatrooms easy to add or remove using data/chatrooms.txt
 
 ## Chat Example
