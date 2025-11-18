@@ -4,13 +4,13 @@ from picows import ws_create_server, WSMsgType, WSTransport, WSListener, WSUpgra
 
 # Global or module-level
 ip_message_log = defaultdict(list)
-blocked_ips = {}  #  ^f^p Dictionary, not set
+blocked_ips = {}  # Dictionary, not set
 connected_clients = set()
 
 def is_spam(ip: str) -> bool:
     now = time.time()
     # Spam: more than 5 messages in 10-second window
-    window = 3  #  ^f^p spam time window
+    window = 3  # spam time window
     # Keep only timestamps from the last 10 seconds for this IP
     ip_message_log[ip] = [t for t in ip_message_log[ip] if now - t < window]
     # Add the current timestamp to the IP's message log
@@ -106,9 +106,6 @@ class Handler(WSListener):
                 if self.room in Handler.room_clients:
                     for client_transport in Handler.room_clients[self.room]:
                         client_transport.send(WSMsgType.TEXT, message_to_send)
-
-                # Send JSON response
-                #transport.send(WSMsgType.TEXT, json.dumps(sendJson).encode('utf-8'))
 
                 # Write to file
                 with open(self.log_file, "r+") as file:
