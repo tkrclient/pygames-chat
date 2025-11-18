@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	var nme = document.getElementById("nme"); // Username input field
 	var log = document.getElementById("log"); // Log container for messages
 	var pick = document.getElementById("colorpicker"); // Username's Colorpicker
-	var ws = new WebSocket("ws://" + "127.0.0.1:8001" + "/chatroom1");	// Establish a WebSocket connection to the server
 	var message = document.getElementById("message");
+	let ws;
 
 	// A map to store usernames and their assigned colors
 	var userColors = {};
