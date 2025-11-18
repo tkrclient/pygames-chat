@@ -114,7 +114,7 @@
 	    if (window["WebSocket"]) {
 			function establishConnection() {
 			    // Establish a WebSocket connection to the server
-				conn = new WebSocket("wss://" + "chat-test-ws.bzmb.eu" + "/chatroom1");
+				conn = new WebSocket("wss://" + "127.0.0.1:8001" + "/chatroom1");
 	
 				// Event handler when open
 				conn.onopen = function(evt) {
