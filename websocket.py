@@ -81,7 +81,7 @@ def websocket():
             if frame.msg_type == WSMsgType.TEXT:
                 # Block spam
                 if is_spam(self.client_ip):
-                    block_duration = 60  #  ^f^p cooldown/block time (different from spam window)
+                    block_duration = 60  # cooldown/block time (different from spam window)
                     blocked_ips[client_ip] = time.time() + block_duration
                     return
 
