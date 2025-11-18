@@ -3,6 +3,7 @@ services:
     build: .
     ports:
       - "0.0.0.0:8001:8001"
+    read_only: true
     volumes:
       # Directory below will hold the chat logs to remember
       - ./data:/data
