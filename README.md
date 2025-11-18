@@ -50,6 +50,6 @@ To use the chat example, open http://127.0.0.1:8000 or http://localhost:8000 in 
 - tiny for extreme security, and easy codebase maintainability 😎
 - whole container is read-only except for data and tmp, which is a mounted volume and anonymous volume
 
-To do soon:
+Will test soon:
 - Disable internet access
 - Drop capability privileges
