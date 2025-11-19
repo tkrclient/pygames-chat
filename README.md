@@ -26,7 +26,7 @@ Put this config in your reverse proxy for this python script to read the header'
 
 ```
 location / {
-    proxy_pass http://your-server-ip-address:8001;
+    proxy_pass http://YOUR-SERVER-IP-ADDRESS:8001;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
