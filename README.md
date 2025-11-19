@@ -21,6 +21,18 @@
 - Should work with reverse proxy, or direct
 - Chatrooms easy to add or remove using data/chatrooms.txt
 
+## If using reverse proxy and want to block ip addresses for spam:
+Put this config in your reverse proxy for this python script to read the header's forwarded client's ip address.
+
+```
+location / {
+    proxy_pass http://your-server-ip-address:8001;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+}   
+```
 ## Chat Example
 
 This application shows how to use the
