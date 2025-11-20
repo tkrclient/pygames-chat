@@ -44,9 +44,6 @@ class Handler(WSListener):
             Handler.room_clients[self.room] = set()
         Handler.room_clients[self.room].add(transport)
 
-        # Ensure directory exists
-        os.makedirs(os.path.dirname(self.log_file), exist_ok=True)
-
         # Create file if it doesn't exist
         if not os.path.exists(self.log_file):
             with open(self.log_file, 'w') as f:
