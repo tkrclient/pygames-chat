@@ -20,6 +20,7 @@
 - Spam detection and blocking support
 - Should work with reverse proxy, or direct
 - Chatrooms easy to add or remove using data/chatrooms.txt
+- Only ONE external library needed, which is the websocket itself (picows)
 
 ## If using reverse proxy and want to block ip addresses for spam:
 Put this config in your reverse proxy for this python script to read the header's forwarded client's ip address.
