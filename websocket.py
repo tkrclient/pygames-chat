@@ -1,6 +1,6 @@
 import asyncio, json, os, time
 from collections import deque, defaultdict
-from picows import ws_create_server, WSMsgType, WSTransport, WSListener, WSUpgradeRequest
+from picows import ws_create_server, WSMsgType, WSTransport, WSListener, WSUpgradeRequest, WSFrame
 from typing import DefaultDict
 
 # Global or module-level
