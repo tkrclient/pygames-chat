@@ -1,6 +1,7 @@
 import asyncio, json, os, time
 from collections import deque, defaultdict
 from picows import ws_create_server, WSMsgType, WSTransport, WSListener, WSUpgradeRequest
+from typing import DefaultDict
 
 # Global or module-level
 ip_message_log: DefaultDict[str, list] = defaultdict(list)
