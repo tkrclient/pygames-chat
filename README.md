@@ -65,4 +65,4 @@ To use the chat example, open http://127.0.0.1:8000 or http://localhost:8000 in 
 - drop capability privileges
 
 To Do:
-- run 13mb executable app in a tmpfs, so will be running on ram (don't worry chat logs are persistent)
+- run 13mb executable app in a tmpfs, so will be running on ram ( don't worry chat logs are persistent since in its own mount volume anyway ;) )
