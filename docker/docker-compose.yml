@@ -9,3 +9,6 @@ services:
       - /tmp # Anonymous volume for execution
     cap_drop:
       - ALL
+    # Testing
+    #tmpfs:
+      #- /app
