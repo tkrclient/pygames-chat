@@ -3,9 +3,9 @@ from collections import deque, defaultdict
 from picows import ws_create_server, WSMsgType, WSTransport, WSListener, WSUpgradeRequest
 
 # Global or module-level
-ip_message_log = defaultdict(list)
-blocked_ips = {}  #  Dictionary, not set
-connected_clients = set()
+ip_message_log: DefaultDict[str, list] = defaultdict(list)
+blocked_ips: dict[str, float] = {}  #  Dictionary, not set
+connected_clients: set[str] = set()
 
 def is_spam(ip: str) -> bool:
     now = time.time()
@@ -66,7 +66,7 @@ def websocket():
             if self.room in Handler.room_clients:
                 Handler.room_clients[self.room].discard(transport)
 
-        def on_ws_frame(self, transport: WSTransport, frame: WSMsgType):
+        def on_ws_frame(self, transport: WSTransport, frame: WSFrame) -> None:
             client_ip = getattr(self, 'client_ip', None)  # Get client IP stored in handler
             if not client_ip:  # If no IP (e.g., missing in transport)
                 return  # Exit early
