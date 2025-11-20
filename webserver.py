@@ -1,7 +1,5 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
-# Import websocket.py function here:
-from websocket import websocket
-import threading, os
+import subprocess, os
 
 class StaticServer(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -32,9 +30,7 @@ def run(server_class=HTTPServer, handler_class=StaticServer, port=8000):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
     print('Starting httpd on port {}'.format(port))
-    # Run websocket.py two lines here:
-    thread = threading.Thread(target=websocket)
-    thread.start()
+    subprocess.Popen(["python3", "websocket.py"])
     httpd.serve_forever()
 
 run()
